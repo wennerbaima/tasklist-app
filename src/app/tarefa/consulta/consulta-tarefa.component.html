@@ -1,0 +1,42 @@
+<div class="card">
+    <div class="card-header" style="text-align: center; font-weight: bold;">{{titulo}}</div>
+    <div class="card-body">
+      <div class="form-row">
+        <button type="button" (click)="dialogCadastroTarefa()" class="btn btn-success">
+            <i class="pi pi-plus"></i>Adicionar
+        </button>
+    </div>
+    <br/>
+    <div class="form-row">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Título</th>
+                    <th>Data de Cadastro</th>
+                    <th>Data de Atualização</th>
+                    <th>Concluída?</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </tr>
+                </thead>
+            
+                <tbody>
+                    <tr *ngFor="let tarefa of tarefas; let i = index;">
+                    <td>{{ tarefa.id }}</td>        
+                    <td>{{ tarefa.titulo }}</td>
+                    <td>{{ tarefa.dataCadastro | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{ tarefa.dataEdicao | date: 'dd/MM/yyyy'}}</td>        
+                    <td *ngIf='tarefa.concluido'>Sim</td>
+                    <td *ngIf='!tarefa.concluido'>Não</td>
+                    <td><a class="btn btn-warning" (click)="dialogCadastroTarefa(tarefa.id)"><i class="pi pi-pencil"></i></a></td>
+                    <td><a class="btn btn-danger" (click)="excluir(tarefa.id, i)"><i class="pi pi-times"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</div>
+Total: {{ tarefas.length }}

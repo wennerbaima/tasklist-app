@@ -1,0 +1,32 @@
+<form [formGroup]="form" (ngSubmit)="salvar()">   
+  <div class="card">
+    <div class="card-header">{{title}}</div>
+    <div class="card-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="titulo">Título:</label>
+          <input id="titulo" class="form-control" type="input" name="titulo" size="60" formControlName="titulo"/>
+          <div class="text-danger" *ngIf="form.get('titulo').invalid && form.get('titulo').touched">
+            <div *ngIf="form.controls['titulo'].errors.required">dado obrigatório</div>
+          </div>
+          <br/>
+          
+          <label for="descricao">Descrição:</label>
+          <textarea id="descricao" class="form-control" rows="4" cols="50" name="descricao" formControlName="descricao"></textarea>
+          <br/><br/>
+      
+          <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="concluido" id="sim" [value]="true" formControlName="concluido">
+              <label class="form-check-label" for="sim">Concluído</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="concluido" id="nao" [value]="false" formControlName="concluido">
+              <label class="form-check-label" for="nao">Não Concluído</label>
+            </div>
+          
+          <button [disabled]="form.invalid" type="submit" class="btn btn-success float-right"><i class="pi pi-check"></i>Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

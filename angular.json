@@ -24,7 +24,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/toastr/build/toastr.min.css",
+              "node_modules/primeicons/primeicons.css"
             ],
             "scripts": []
           },
@@ -119,6 +122,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "tasklist-app"
+    }
+  },
+  "defaultProject": "tasklist-app",
+  "cli": {
+    "analytics": "d7ec9f17-fa39-47fa-a058-b3e461e30854"
+  }
 }
