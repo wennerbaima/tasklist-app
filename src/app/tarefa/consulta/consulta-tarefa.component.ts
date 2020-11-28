@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import { TarefaService } from '../tarefa.service';
+import { TarefaService } from '../../services/tarefa.service';
 import { Tarefa } from '../tarefa';
 import { DialogService } from 'primeng/dynamicdialog/';
 import toastr from 'toastr';
@@ -15,37 +15,32 @@ import { CadastroTarefaComponent } from '../cadastro/cadastro-tarefa.component';
   export class ConsultaTarefaComponent implements OnInit {
  
     public tarefas: Tarefa[] = new Array();
-    public titulo: string;
+    public title: string;
  
     constructor(private tarefaService: TarefaService,
                 private dialogService: DialogService,
                 private router: Router){}
  
+    /*INICIALIZA O COMPONENTE */
     ngOnInit() {
 
-      /*TÍTULO DA TELA*/
-      this.titulo = "TAREFAS CADASTRADAS";
+      this.title = "TAREFAS CADASTRADAS";
 
       this.listar();
     }
- 
+
+    /*CHAMA O SERVIÇO PARA RETORNAR TODAS AS TAREFAS CADASTRADAS */
     listar() {
 
-      /*CHAMA O SERVIÇO QUE RETORNA TODAS AS TAREFAS CADASTRADAS */
       this.tarefaService.findAll().subscribe(
         (result) => this.tarefas = result),
         (error) => toastr.error("Ocorreu um erro durante a listagem!")
     }
 
-    /*editar(id: number):void{
-      this.router.navigate(['/cadastro', id]);
-    }*/
-
+    /*CHAMA O SERVIÇO PARA REALIZAR A EXCLUSÃO */
     excluir(id: number, index: number):void {
 
       if(confirm("Deseja realmente excluir esse registro?")){
- 
-        /*CHAMA O SERVIÇO PARA REALIZAR A EXCLUSÃO */
         this.tarefaService.delete(id).subscribe(
           (result) => {
             this.tarefas.splice(index, 1);
@@ -56,6 +51,7 @@ import { CadastroTarefaComponent } from '../cadastro/cadastro-tarefa.component';
       }
     }
 
+    /*CARREGA O COMPONENTE PARA CADASTRO/ALTERAÇÃO */
     dialogCadastroTarefa(id?) {
 
       let ref = this.dialogService.open(CadastroTarefaComponent, {

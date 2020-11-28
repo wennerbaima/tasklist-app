@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { TarefaService } from '../tarefa.service';
+import { TarefaService } from '../../services/tarefa.service';
 import {Tarefa} from '../tarefa';
 import toastr from 'toastr';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
  
 @Component({
     selector: 'app-cadastro-tarefa',
@@ -47,14 +47,14 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
       }      
     }
 
-    /*SALVA UM NOVO REGISTRO OU ALTERA UM REGISTRO EXISTENTE */
+    /*CHAMA O SERVIÇO PARA INSERIR/ATUALIZAR UMA TAREFA */
     salvar():void {
 
-      /*SE NÃO TIVER ID, INSERE UM NOVO REGISTRO */
+      /*INSERE */
       if(this.form.get("id").value == undefined){
         this.tarefa = this.form.value;
         this.tarefa.dataCadastro = new Date();
-        /*CHAMA O SERVIÇO PARA ADICIONAR UMA NOVA TAREFA */
+        
         this.tarefaService.add(this.tarefa).subscribe(
             (result) => toastr.success("Tarefa cadastrada com sucesso!"),
             (error) => toastr.error("Ocorreu um erro durante o cadastro!")
@@ -62,7 +62,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
  
       }
       else{
-        /*SE TIVER ID, ATUALIZA AS INFORMAÇÕES DO REGISTRO */
+        /*ATUALIZA */
         this.tarefa = this.form.value;
         this.tarefa.dataEdicao = new Date();
         this.tarefaService.update(this.tarefa).subscribe(

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Tarefa } from './tarefa';
-import { ConfigService } from '../services/config.service';
+import { Tarefa } from '../tarefa/tarefa';
+import { ConfigService } from './config.service';
 
 @Injectable()
 export class TarefaService {

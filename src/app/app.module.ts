@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConsultaTarefaComponent } from './tarefa/consulta/consulta-tarefa.component';
-import { TarefaService } from './tarefa/tarefa.service';
+import { TarefaService } from './services/tarefa.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { ConfigService } from './services/config.service';
