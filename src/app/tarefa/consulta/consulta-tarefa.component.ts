@@ -21,7 +21,7 @@ import { CadastroTarefaComponent } from '../cadastro/cadastro-tarefa.component';
                 private dialogService: DialogService,
                 private router: Router){}
  
-    /*INICIALIZA O COMPONENTE */
+    /**INICIALIZA O COMPONENTE */
     ngOnInit() {
 
       this.title = "TAREFAS CADASTRADAS";
@@ -29,7 +29,7 @@ import { CadastroTarefaComponent } from '../cadastro/cadastro-tarefa.component';
       this.listar();
     }
 
-    /*CHAMA O SERVIÇO PARA RETORNAR TODAS AS TAREFAS CADASTRADAS */
+    /**CHAMA O SERVIÇO PARA RETORNAR TODAS AS TAREFAS CADASTRADAS */
     listar() {
 
       this.tarefaService.findAll().subscribe(
@@ -37,7 +37,7 @@ import { CadastroTarefaComponent } from '../cadastro/cadastro-tarefa.component';
         (error) => toastr.error("Ocorreu um erro durante a listagem!")
     }
 
-    /*CHAMA O SERVIÇO PARA REALIZAR A EXCLUSÃO */
+    /**CHAMA O SERVIÇO PARA REALIZAR A EXCLUSÃO */
     excluir(id: number, index: number):void {
 
       if(confirm("Deseja realmente excluir esse registro?")){
@@ -51,7 +51,7 @@ import { CadastroTarefaComponent } from '../cadastro/cadastro-tarefa.component';
       }
     }
 
-    /*CARREGA O COMPONENTE PARA CADASTRO/ALTERAÇÃO */
+    /**CARREGA O COMPONENTE PARA CADASTRO/ALTERAÇÃO */
     dialogCadastroTarefa(id?) {
 
       let ref = this.dialogService.open(CadastroTarefaComponent, {

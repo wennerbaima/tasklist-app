@@ -1,40 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { Tarefa } from '../tarefa/tarefa';
 import { ConfigService } from './config.service';
+import { GenericService } from './generic.service';
 
-@Injectable()
-export class TarefaService {
-  private url: string;
+@Injectable({
+  providedIn: 'root',
+})
+export class TarefaService extends GenericService<Tarefa>{
  
-  constructor(private http: HttpClient,
-              private configService: ConfigService) {
-    this.url = configService.getUrlService();
-  }
-
-  /**CONSULTA AS TAREFAS CADASTRADAS */
-  public findAll(): Observable<Tarefa[]> {
-    return this.http.get<Tarefa[]>(this.url);
-  }
-
-  /**CONSULTA UMA TAREFA PELO ID */
-  public findById(id: number): Observable<Tarefa> {
-    return this.http.get<Tarefa>(this.url+id);
-  }
-
-  /**ADICIONA UMA NOVA TAREFA */
-  add(tarefa: Tarefa): Observable<Tarefa>{
-    return this.http.post<Tarefa>(this.url, tarefa);
-  }
-
-  /**ATUALIZA UMA TAREFA */
-  update(tarefa: Tarefa): Observable<Tarefa>{
-    return this.http.put<Tarefa>(this.url+tarefa.id, tarefa);
-  }
-
-  /**DELETA UMA TAREFA */
-  delete(id: number): Observable<Tarefa>{
-    return this.http.delete<Tarefa>(this.url+id);
+  constructor(private http: HttpClient, private configService: ConfigService) {
+    super(http, configService.getUrlService()+"tarefas/");
   }
 }

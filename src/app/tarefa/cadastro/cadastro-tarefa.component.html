@@ -7,7 +7,7 @@
           <label for="titulo">Título:</label>
           <input id="titulo" class="form-control" type="input" name="titulo" size="60" formControlName="titulo"/>
           <div class="text-danger" *ngIf="form.get('titulo').invalid && form.get('titulo').touched">
-            <div *ngIf="form.controls['titulo'].errors.required">dado obrigatório</div>
+            <div *ngIf="form.controls['titulo'].errors.required">campo obrigatório</div>
           </div>
           <br/>
           
@@ -24,7 +24,7 @@
               <label class="form-check-label" for="nao">Não Concluído</label>
             </div>
           
-          <button [disabled]="form.invalid" type="submit" class="btn btn-success float-right"><i class="pi pi-check"></i>Salvar</button>
+          <button [disabled]="form.invalid" type="submit" class="btn btn-primary float-right"><i class="pi pi-check"></i>Salvar</button>
         </div>
       </div>
     </div>

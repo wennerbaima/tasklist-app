@@ -22,7 +22,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
                 private ref: DynamicDialogRef,
                 private config: DynamicDialogConfig,){}
  
-    /*INICIALIZA O COMPONENTE */
+    /**INICIALIZA O COMPONENTE */
     ngOnInit() {
  
       this.form = this.formBuilder.group({
@@ -47,10 +47,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
       }      
     }
 
-    /*CHAMA O SERVIÇO PARA INSERIR/ATUALIZAR UMA TAREFA */
+    /**CHAMA O SERVIÇO PARA INSERIR/ATUALIZAR UMA TAREFA */
     salvar():void {
 
-      /*INSERE */
+      /**INSERE */
       if(this.form.get("id").value == undefined){
         this.tarefa = this.form.value;
         this.tarefa.dataCadastro = new Date();
@@ -62,10 +62,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
  
       }
       else{
-        /*ATUALIZA */
+        /**ATUALIZA */
         this.tarefa = this.form.value;
         this.tarefa.dataEdicao = new Date();
-        this.tarefaService.update(this.tarefa).subscribe(
+        this.tarefaService.update(this.tarefa.id, this.tarefa).subscribe(
             (result) => toastr.success("Tarefa atualizada com sucesso!"),
             (error) => toastr.error("Ocorreu um erro durante a atualização!")
        );
