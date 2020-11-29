@@ -44,7 +44,7 @@ import { CadastroTarefaComponent } from '../cadastro/cadastro-tarefa.component';
         this.tarefaService.delete(id).subscribe(
           (result) => {
             this.tarefas.splice(index, 1);
-            toastr.success("Tarefa excluída com sucesso!");
+            toastr.success("Solicitação efetuada com sucesso!");
           },
           (error) => toastr.error("Ocorreu um erro durante a exclusão!")
         )
@@ -63,8 +63,10 @@ import { CadastroTarefaComponent } from '../cadastro/cadastro-tarefa.component';
   
       ref.onClose.subscribe((reload) => {
   
-        if (reload)
-          location.reload();
+        if (reload) {
+          this.listar();
+          toastr.success("Solicitação efetuada com sucesso!");
+        }
       });
     }
   }

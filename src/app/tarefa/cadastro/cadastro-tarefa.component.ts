@@ -56,7 +56,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
         this.tarefa.dataCadastro = new Date();
         
         this.tarefaService.add(this.tarefa).subscribe(
-            (result) => toastr.success("Tarefa cadastrada com sucesso!"),
+            (result) => this.ref.close(true),
             (error) => toastr.error("Ocorreu um erro durante o cadastro!")
         );
  
@@ -66,12 +66,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
         this.tarefa = this.form.value;
         this.tarefa.dataEdicao = new Date();
         this.tarefaService.update(this.tarefa.id, this.tarefa).subscribe(
-            (result) => toastr.success("Tarefa atualizada com sucesso!"),
+            (result) => this.ref.close(true),
             (error) => toastr.error("Ocorreu um erro durante a atualização!")
        );
       }
  
-      this.ref.close(true);
+      //
     }
  
   }
